@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Flight Details</title>
+  <style>
+    body {
+      background-image: url('airport_login.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    label {
+      display: block;
+      margin-top: 15px;
+      font-size: 16px;
+      font-weight: bold;
+    }
+    .details{
+      margin-left: 300px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+    }
+    button {
+      width: 45%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #00bcd4;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0097a7;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="details">
+    <h2>Add Flight Details</h2>
+    <form action="add.php" method="post">
+      <label>Source</label>
+      <input type="text" name="source" required>
+      <label>Destination</label>
+      <input type="text" name="destination" required>
+      <label>Date</label>
+      <input type="date" name="Date" required>
+      <label>Base Fare</label>
+      <input type="text" name="baseFare" required>
+      <label>Airline Code</label>
+      <input type="text" name="airlineCode" required>
+      <label>Airline Name</label>
+      <input type="text" name="airlineName" required>
+      <button type="submit">Add</button>
+      <button type="submit">Back</button>
+    </form>
+  </div>
+
+</body>
+</html>

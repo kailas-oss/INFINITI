@@ -1,0 +1,155 @@
+body{
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+.cuscontainer{
+  margin: 0 -15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.cuscontainer input{
+  border-radius: 14px;
+}
+
+.header a{
+  color: black !important;
+}
+
+.navbar.cusnav{
+  font-weight: bolder;
+  background-color: #ffffff;
+  border: 0;
+  box-shadow: 0 2px 4px rgb(153, 150, 150);
+}
+
+.cusnav{
+  height: 70px;
+}
+
+.menus a{
+  color: #e91e63 !important;
+  margin-right: 20px;
+}
+
+.cusnav a:hover{
+  font-weight: bold;
+  color: #e91e63 !important;
+}
+
+.cusbtn{
+  border-radius: 20px;
+  background-color: #e91e63;
+  color: #fff;
+  border: none;
+}
+
+.cusbtn:hover{
+  background-color: #c2185b;
+}
+
+.formdetails th, .formdetails td{
+  padding: 10px;
+}
+
+form{
+  width: 1000px;
+  margin: 20px auto;
+}
+
+form th{
+  background-color: black;
+  color: white;
+  padding: 8px;
+  text-align: center;
+}
+
+form td{
+  color: black;
+  padding: 8px;
+  text-align: center;
+}
+
+.update{
+  background-color: rgb(155, 220, 238);
+  border-radius: 5px;
+  border: 0;
+  margin-right: 12px;
+  padding: 3px 6px;
+  color: white;
+  text-decoration: none !important;
+}
+
+.delete{
+  background-color: rgb(242, 84, 84);
+  border: 0;
+  padding: 3px 6px;
+  border-radius: 5px;
+  color: white;
+  text-decoration: none !important;
+}
+
+.cusinput{
+  margin-top: 15px;
+  margin-right: 25px;
+}
+
+tr:hover{
+  background-color: rgb(241, 207, 221);
+}
+
+.cusdrop{
+  border: 1px solid black;
+  margin-left: 100px;
+  margin-top: 80px;
+  display: inline;
+}
+
+.cusheading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black!important;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+}
+
+/* .cusdrop{
+  border: 1px solid black;
+  margin-left: 100px;
+  margin-top: 80px;
+  display: inline;
+}
+
+.cusheading{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black!important;
+  padding: 15px 30px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+} */
+
+.cusheading h1{
+  text-align:center;
+  margin: 0;
+  font-size: 24px;
+  font-weight: bolder;
+}
+
+.cusheading a{
+  color: white;
+  background-color: rgb(24, 150, 204);
+  padding: 8px 20px;
+  border-radius: 5px;
+  text-decoration: none !important;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.cusheading a:hover{
+  background-color: white;
+  color: black;
+}

@@ -1,0 +1,96 @@
+[
+    {
+      "pnr": "ABC123DEF",
+      "airline_code": "AA",
+      "flight_number": "AA101",
+      "departure_airport": "DFW",
+      "arrival_airport": "LHR",
+      "departure_time": "2023-10-27T10:00:00Z",
+      "arrival_time": "2023-10-28T06:00:00Z",
+      "passengers": [
+        {
+          "passenger_id": "P001",
+          "first_name": "John", 
+          "last_name": "Doe",
+          "date_of_birth": "1980-05-15",
+          "seat_number": "22A",
+          "ticket_number": "0011234567890"
+        },
+        {
+          "passenger_id": "P002",
+          "first_name": "Jane",
+          "last_name": "Doe",
+          "date_of_birth": "1982-08-20",
+          "seat_number": "22B",
+          "ticket_number": "0019876543210"
+        }
+      ]
+    },
+    {
+        "pnr": "GHI456JKL",
+        "airline_code": "DL",
+        "flight_number": "DL202",
+        "departure_airport": "ATL",
+        "arrival_airport": "CDG",
+        "departure_time": "2023-11-15T14:30:00Z",
+        "arrival_time": "2023-11-16T09:00:00Z",
+        "passengers": [
+          {
+            "passenger_id": "P003",
+            "first_name": "Alice",
+            "last_name": "Smith",
+            "date_of_birth": "1995-03-10",
+            "seat_number": "10C",
+            "ticket_number": "0065432109876"
+          }
+        ]
+      },
+        {
+        "pnr": "MNO789PQR",
+        "airline_code": "EK",
+        "flight_number": "EK303",
+        "departure_airport": "DXB",
+        "arrival_airport": "SIN",
+        "departure_time": "2023-12-01T22:00:00Z",
+        "arrival_time": "2023-12-02T10:00:00Z",
+        "passengers": [
+          {
+            "passenger_id": "P004",
+            "first_name": "David",
+            "last_name": "Lee",
+            "date_of_birth": "1978-11-22",
+            "seat_number": "45D",
+            "ticket_number": "1761122334455"
+          },
+          {
+            "passenger_id": "P005",
+            "first_name": "Sarah",
+            "last_name": "Kim",
+            "date_of_birth": "2001-06-08",
+            "seat_number": "45E",
+            "ticket_number": "1766677889900"
+          }
+        ]
+      },
+          {
+        "pnr": "STU101VWX",
+        "airline_code": "AI",
+        "flight_number": "AI404",
+        "departure_airport": "DEL",
+        "arrival_airport": "LHR",
+        "departure_time": "2024-01-15T08:00:00Z",
+        "arrival_time": "2024-01-15T14:00:00Z",
+        "passengers": [
+          {
+            "passenger_id": "P006",
+            "first_name": "Priya",
+            "last_name": "Sharma",
+            "date_of_birth": "1990-09-03",
+            "seat_number": "12F",
+            "ticket_number": "0981231231234"
+          }
+        ]
+      }
+    ]
+    
+                

@@ -1,0 +1,78 @@
+:root{
+    --bgcolor : #e91e63;
+}
+body{
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+}
+
+.cuscontainer{
+    margin:0px -15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.cuscontainer input{
+    border-radius: 14px;
+}
+
+.header a{
+    color:black!important;
+}
+
+.navbar.cusnav{
+    font-weight: bolder;
+    background-color: #ffffff;
+    border:0px;
+    box-shadow: 0 2px 4px rgb(153, 150, 150);
+    margin-bottom:1%;
+}
+
+.cusnav{
+    height: 70px;
+}
+
+.menus a{
+    color: var(--bgcolor)!important;
+    margin-right: 20px;
+    transition: 0.3s;
+}
+
+.cusnav a:hover{
+    font-weight: bold;
+    color: var(--bgcolor)!important;
+}
+
+.cusbtn{
+    border-radius: 20px;
+    background-color: var(--bgcolor)!important;
+    color: #fff;
+    border: none;
+    transition: 0.3s;
+}
+.cusbtn:hover{
+    background-color: var(--bgcolor)!important;
+}
+.imag{
+    width:100%;
+}
+.addcontainer{
+    width:500px;
+    margin:0px auto;
+    align-items: center;
+    text-align: center;
+    margin-top: 5px;
+    padding: 10px ;
+    background-color: #f6ebef;
+    box-shadow: 1px 4px 4px var(--bgcolor)!important;
+}
+.addcontainer input{
+    border-radius:4px;
+    border : 2px solid var(--bgcolor)!important;
+}
+.headercontainer{
+    width: 400px;
+    margin:0px auto;
+    text-align:center;
+}
+.headercontainer h3{
+    font-weight:bolder;
+}

@@ -1,0 +1,50 @@
+:root{
+    --bgcolor:#c2185b;
+}
+body {
+  background-color: #f8f9fa;
+  overflow-x: hidden;
+}
+
+.cuscontainer{
+  margin:0px -15px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.cusnav{
+    height: 70px;
+    background-color: white!important;
+    border-radius: 0px;
+    border: none;
+    box-shadow: 0px 2px 4px rgb(113, 111, 111);
+}
+.cusheader a{
+    color: black!important;
+    font-weight: bolder;
+    margin-top: 5px;
+
+}
+.cusinput {
+    margin: 15px 10px;
+}
+.cusinput input{
+    border-radius: 14px;
+}
+.menus a {
+  color: #e91e63 !important;
+  margin-right: 20px;
+}
+.cusbtn{
+    background-color: var(--bgcolor);
+    border-radius: 14px;
+    border: 0px!important;
+    padding: 5px 14px;
+    color: white;
+}
+.cusinput button:hover{
+    color: white;
+    
+}
+.menus a {
+  color: #e91e63 !important;
+  margin-right: 20px;
+}

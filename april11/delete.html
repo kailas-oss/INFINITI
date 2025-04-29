@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Delete Flight</title>
+  <style>
+    body {
+      background-image: url(airport_login.jpg);
+      background-size: cover;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .delete{
+        padding-top: 200px;
+        padding-left: 400px;
+      border-radius: 16px;
+      text-align: center;
+      width: 300px;
+    }
+    label {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 16px;
+    }
+    button {
+      padding: 12px 20px;
+      background-color:#00bcd4;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #00bcd4;
+    }
+  </style>   
+</head>
+<body>
+
+  <form class="delete" action="delete.php" method="post">
+    <h2>Delete Flight Record</h2>
+    <label for="id">Enter the ID:</label>
+    <input type="number" id="id" name="id" required>
+    <button type="submit">Delete</button>
+  </form>
+
+</body>
+</html>

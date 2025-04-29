@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <style>
+   body{
+    background-image: url("airport_login.jpg");
+    background-size: cover;
+    background-position: center;
+    /* height: 100vh; */
+     padding-top: 150px;
+   }
+   .login {
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+      width: 320px;
+      margin-left: 500px;
+    }
+    
+    button{
+        border-radius: 10px;
+        border-color: aquamarine;
+        border: 2px solid rgb(135, 218, 233);
+        padding: 5px;
+    }
+    button:hover{
+        cursor: pointer;
+        background-color: rgb(188, 222, 211);
+        border:  solid rgb(103, 206, 206);
+    }
+  </style>
+</head>
+<body>
+    
+<div class="login">
+  <form class="formcentre" action="userlogin.php" method="get">
+    <center>
+        <h1 >Login Page</h1><br>
+        <h4 style="display: flex; align-items: center; gap: 10px;padding-left: 43px;">Mobile No:  <input type="text" name="mobile_no" required></h4>
+    <h4 style="display: flex; align-items: center; gap: 13px;padding-left: 44px;">
+        Password:
+        <input type="password" name="password" required>
+      </h4><br>
+    
+    <button type="submit">Submit</button>
+    </center>
+  </form>
+</div>
+</body>
+</html>
