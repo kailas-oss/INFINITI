@@ -1,53 +1,14 @@
 <?php
+include 'configuration/curl.php';
+
 if (isset($_GET['update_id'])){
   $apiKey = "update";
   $updateArr = [];
   $updateArr["data_id"] = $_GET['update_id'];
   $updateArr["action"] = "update";
-  $cl = curl_init();
-  curl_setopt_array($cl,[
-      CURLOPT_URL=>"http://localhost/practicephp/moviebooking/server.php",
-      CURLOPT_RETURNTRANSFER => true,
-      CURLOPT_POSTFIELDS => $updateArr,
-      CURLOPT_HTTPHEADER => 
-      ["API-KEY: $apiKey"]
-  ]);
-  $responce = curl_exec($cl);
+  $responce = curl($apiKey,$updateArr);
   $finalVal = json_decode($responce,true);
-  // print_r($finalVal);
 }
-
-
-// $source = isset($_POST['source'])?$_POST['source']:'';
-// $destination = isset($_POST['destination'])?$_POST['destination']:'';
-// $date = isset($_POST['date'])?$_POST['date']:'';
-// $basefare = isset($_POST['basefare'])?$_POST['basefare']:'';
-// $airlineCode = isset($_POST['airlineCode'])?$_POST['airlineCode']:'';
-// $airlineName = isset($_POST['airlineName'])?$_POST['airlineName']:'';
-// $apiKey = "UPDATEVALUES";
-// // echo $source;
-// $cl = curl_init();
-// $data = [
-//     "source" => $source,
-//     "destination" => $destination,
-//     "date" => $date,
-//     "basefare" => $basefare,
-//     "airlineCode" => $airlineCode,
-//     "airlineName" => $airlineName
-// ];
-// $updateArr = [];
-// $updateArr["datas"] = json_encode($data);
-// // var_dump($updateArr);
-// $updateArr["action"] = "updateValues";
-// curl_setopt_array($cl,[
-//     CURLOPT_URL => "http://localhost/practicephp/flighttask/server.php",
-//     CURLOPT_RETURNTRANSFER => true,
-//     CURLOPT_HTTPHEADER => 
-//         ["API-KEY: $apiKey"]
-// ]);
-// $responce = curl_exec($cl);
-//   include 'configuration/config.php';
-
   $movie = '';
   $user_id = '';
   $theater = '';
@@ -55,27 +16,6 @@ if (isset($_GET['update_id'])){
   $payment = '';
   $status = '';
   $id = '';
-
-// if (isset($_GET['update_id'])){
-//     $id = $_GET['update_id'];
-//     $query = "select * from booking where booking_id = :id";
-
-    
-//     $result = mysqli_query($connect, $query);
-
-//     if ($result && mysqli_num_rows($result) > 0){
-//         $row = mysqli_fetch_assoc($result);
-//         $movie = $row['r_movie_id'];
-//         $user_id = $row['r_user_id'];
-//         $theater = $row['r_theater_id'];
-//         $price = $row['price'];
-//         $payment = $row['r_payment'];
-//         $status = $row['status'];
-//     } else{
-//         echo "Booking not found!";
-//         exit;
-//     }
-// }
 
 if (isset($_POST['submit'])){
     $movie = $_POST['Movie'];
@@ -96,16 +36,7 @@ if (isset($_POST['submit'])){
     $updateArr["data_id"] = $_GET['update_id'];
     $updateArr["datas"] = json_encode($data);
     $updateArr["action"] = "updateVal";
-    
-    $cl = curl_init();
-    curl_setopt_array($cl,[
-        CURLOPT_URL=>"http://localhost/practicephp/moviebooking/server.php",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => $updateArr,
-        CURLOPT_HTTPHEADER => 
-        ["API-KEY: $apiKey"]
-    ]);
-    $responce = curl_exec($cl);
+    $responce = curl($apiKey,$updateArr);
     if($responce=="succ"){
       header("Location:showlist.php");
     }

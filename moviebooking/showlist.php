@@ -39,9 +39,7 @@
   </div>
 
 <?php
-
   $apiKey = "showlist";
-
   $userVal = [];
   $userVal["action"] = "search";
   $cl = curl_init();
@@ -59,19 +57,9 @@
   if (isset($_GET['price'])){
     $filter_by = $_GET['price'];
     $apiKey = "price";
-
     $userVal = [];
     $userVal["action"] = "price";
-    $cl = curl_init();
-    curl_setopt_array($cl,[
-        CURLOPT_URL => "http://localhost/practicephp/moviebooking/server.php",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => $userVal,
-        CURLOPT_HTTPHEADER => 
-            ["API-KEY: $apiKey"]
-    ]);
-    $arr = [];
-    $responce = curl_exec($cl);
+    $responce = curl($apiKey,$userVal);
     $finalVal = json_decode($responce,true);
 
   }else if (isset($_GET['status'])){
@@ -80,16 +68,7 @@
 
     $userVal = [];
     $userVal["action"] = "status";
-    $cl = curl_init();
-    curl_setopt_array($cl,[
-        CURLOPT_URL => "http://localhost/practicephp/moviebooking/server.php",
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_POSTFIELDS => $userVal,
-        CURLOPT_HTTPHEADER => 
-            ["API-KEY: $apiKey"]
-    ]);
-    $arr = [];
-    $responce = curl_exec($cl);
+    $responce = curl($apiKey,$userVal);
     $finalVal = json_decode($responce,true);
   }
 

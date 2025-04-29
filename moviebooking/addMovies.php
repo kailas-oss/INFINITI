@@ -57,14 +57,32 @@
 </body>
 </html>
 <?php
+    include 'configuration/curl.php';
     $movie = $_POST['movie'];
     $description = isset($_POST['description'])?$_POST['description']:'';
     $duration = isset($_POST['duration'])?$_POST['duration']:'';
-    $moveType = isset($_POST['moveType'])?$_POST['moveType']:'';
+    $movieType = isset($_POST['moveType'])?$_POST['moveType']:'';
     $suppLang = isset($_POST['suppLang'])?$_POST['suppLang']:'';
     $releaseDate = isset($_POST['releaseDate'])?$_POST['releaseDate']:'';
     $caste = isset($_POST['caste'])?$_POST['caste']:'';
     $image = isset($_POST['image'])?$_POST['image']:'';
+    // echo $movie;
+    $apiKey = "addmovies123";
+    $addMovies = [];
+    $addMovies["details"] =json_encode([
+      "movie" => $movie,
+      "description"=>$description,
+      "duration"=>$duration,
+      "movieType"=>$movieType,
+      "suppLang"=>$suppLang,
+      "releaseDate"=>$releaseDate,
+      "caste"=>$caste,
+      "image"=>$image
+    ]);
+    $addMovies["action"] = "addMovies";
+    $responce = curl($apiKey,$addMovies);
+    // print_r($responce);
+
 
     
 ?>

@@ -65,8 +65,6 @@
     </div>
 <?php
 
-  
-  // error_reporting(0);
   include 'configuration/curl.php';
 
   $movie   = isset($_POST['Movie'])? $_POST['Movie']:'';
@@ -90,8 +88,9 @@
   $addArray["action"] = "add";
   $responce = curl($apiKey,$addArray);
   if($responce=="success"){
-    echo "<script>alert('INSERTED SUCCESSFULLY');</script>";
     header("location:showlist.php");
+    echo "<script>alert('INSERTED SUCCESSFULLY');</script>";
+
   }
 ?>
 </body>

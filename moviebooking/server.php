@@ -7,72 +7,25 @@
     $key = isset($headers['API-KEY']) ? $headers['API-KEY'] : null;
     if($key=="showlist"){
         if($action=="search"){
-            // $res =  search($connect);
-            // var_dump($res);
-            // echo $res;
-            $output = [];
-            $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m on b.r_movie_id = m.movie_id  inner join theater as t on b.r_theater_id = t.theater_id  
-            inner join login as l on b.r_user_id = l.user_id inner join payment as p on b.r_payment = p.payment_id;");
-            $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
-            echo json_encode($output["datas"]);
+            echo search($connect);
         }
     }else if($key=="price"){
         if($action=="price"){
-            $output = [];
-            $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m on b.r_movie_id = m.movie_id inner join theater as t on b.r_theater_id = t.theater_id  
-            inner join login as l on b.r_user_id = l.user_id inner join payment as p on b.r_payment = p.payment_id order BY b.price ASC;");
-            $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
-            echo json_encode($output["datas"]); 
+            echo price($connect);
         }
     }else if($key=="status"){
         if($action=="status"){
-            $output = [];
-            $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m ON b.r_movie_id = m.movie_id  
-            inner join theater as t ON b.r_theater_id = t.theater_id inner join login as l ON b.r_user_id = l.user_id inner join payment as p ON b.r_payment = p.payment_id where p.status = 'success';");
-            $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
-            echo json_encode($output["datas"]); 
+            echo status($connect);
         }
         
     }else if($key=="update"){
         if($action=="update"){
-            echo update($_POST['data_id']);
+            echo update($_POST['data_id'],$connect);
         }
         
     }else if($key=="updateVal"){
         if($action=="updateVal"){
-            // echo "update value";
-            $datas = json_decode($_POST['datas'], true); 
-            // echo print_r($datas);
-            $movie = $datas[0]['movie'];
-            $user_id = $datas[0]['user_id'];
-            $theater = $datas[0]['theater'];
-            $price = $datas[0]['price'];
-            $payment = $datas[0]['payment'];
-
-            $output = [];
-            $booking_id = $_POST['data_id'];
-            $stat = $connect->query("select * from booking where booking_id='$booking_id'");
-            $output["datas"] = $stat->fetchAll(PDO::FETCH_ASSOC);
-            // print_r($output["datas"]);
-            $status = $output['datas'][0]['status'];
-            $id = $output['datas'][0]['booking_id'];
-            // echo $status; 
-            $upd = "
-                update booking set r_movie_id = :movie, r_user_id = :user_id,r_theater_id = :theater,price = :price,
-                r_payment = :payment,status = :status where booking_id = :id
-            ";
-            
-            $updateQuery = $connect->prepare($upd);
-            $updateQuery->bindParam(':movie',$movie);
-            $updateQuery->bindParam(':user_id',$user_id);
-            $updateQuery->bindParam(':theater',$theater);
-            $updateQuery->bindParam(':price',$price);
-            $updateQuery->bindParam(':payment',$payment);
-            $updateQuery->bindParam(':status',$status);
-            $updateQuery->bindParam(':id',$id);
-            $updateQuery->execute();
-            echo "succ";
-            // echo "<script>alert(INSERTED SUCCESSFULLY)</script>";
+            echo updateVal($connect);
         }
     }
     else if($key=='delete'){
@@ -88,7 +41,54 @@
     }
     else if($key=="add"){
         if($action=="add"){
-            $datas = $_POST['datas'];
+            return add($connect);
+        }
+    }else if($key=="addmovies123"){
+        if($action=="addMovies"){
+            // echo "add Movies";
+            $details = $_POST['details'];
+            $output = json_decode($details,true);
+            // print_r($output);
+            $movie = $output['movie'];
+            $description = $output['description'];
+            $duration = $output['duration'];
+            $movieType = $output['movieType'];
+            $suppLang = $output['suppLang'];
+            $releaseDate = $output['releaseDate'];
+            $caste = $output['caste'];
+            $image = $output['image'];
+
+            $insert = "insert into movie (movie_name,description,duration,movie_type,supp_lang,release_date,r_caste)
+            values(:movie,:description,:duration,:movieType,:suppLang,:release,:caste);";
+            $inserting = $connect->prepare($insert);
+            $inserting->bindParam(':movie',$movie);
+            $inserting->bindParam(':description',$description);
+            $inserting->bindParam(':duration',$duration);
+            $inserting->bindParam(':movieType',$movieType);
+            $inserting->bindParam(':suppLang',$suppLang);
+            $inserting->bindParam(':release',$releaseDate);
+            $inserting->bindParam(':caste',$caste);
+            $inserting->execute();    
+            
+            $sel = $connect->query("select movie_id from movie where movie_name=:movie and description=:description,duration=:duration ,movie_type=:movieType ,supp_lang=:suppLang ,release_date=:release ,r_caste=:caste ;");
+            // $movie_id = $sel->execute();
+            $sel = $connect->prepare($insert);
+            $sel->bindParam(':movie',$movie);
+            $sel->bindParam(':description',$description);
+            $sel->bindParam(':duration',$duration);
+            $sel->bindParam(':movieType',$movieType);
+            $sel->bindParam(':suppLang',$suppLang);
+            $sel->bindParam(':release',$releaseDate);
+            $sel->bindParam(':caste',$caste);
+            $movie_id = $sel->execute();
+            echo $movie_id;
+        }
+    }
+
+
+                //ADD FUNCTION
+    function add($connect){
+        $datas = $_POST['datas'];
             $output = json_decode($datas,true);
             $movie = $output['movie'];
             $userId = $output['userId'];
@@ -111,23 +111,70 @@
             }else{
                 echo "not success";
             }
-            
-        }
-    }
 
-    function update($data_id){
-        include 'configuration/config.php';
+    }
+                //SEARCH FUNCTION
+    function search($connect){
+        $output = [];
+        $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m on b.r_movie_id = m.movie_id  inner join theater as t on b.r_theater_id = t.theater_id  
+        inner join login as l on b.r_user_id = l.user_id inner join payment as p on b.r_payment = p.payment_id;");
+        $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
+        return json_encode($output["datas"]);
+    }
+            
+                // UPDATE FUNCTION
+    function update($data_id,$connect){
         $output = [];
         $sel = $connect->query("select * from booking where booking_id='$data_id';");
         $output["datas"] = $sel->fetch(PDO::FETCH_ASSOC);
         echo json_encode($output["datas"]);
     }
-    // function search($connect){
-    //     include 'configuration/config.php';
-        // $output = [];
-        // $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m on b.r_movie_id = m.movie_id  inner join theater as t on b.r_theater_id = t.theater_id  
-        // inner join login as l on b.r_user_id = l.user_id inner join payment as p on b.r_payment = p.payment_id;");
-        // $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
-        // return json_encode($output["datas"]);
-    // }
+                //UPDATEVAL FUNCTION
+    function updateVal($connect){
+        $datas = json_decode($_POST['datas'], true); 
+        $movie = $datas[0]['movie'];
+        $user_id = $datas[0]['user_id'];
+        $theater = $datas[0]['theater'];
+        $price = $datas[0]['price'];
+        $payment = $datas[0]['payment'];
+
+        $output = [];
+        $booking_id = $_POST['data_id'];
+        $stat = $connect->query("select * from booking where booking_id='$booking_id'");
+        $output["datas"] = $stat->fetchAll(PDO::FETCH_ASSOC);
+        $status = $output['datas'][0]['status'];
+        $id = $output['datas'][0]['booking_id'];
+        $upd = "
+            update booking set r_movie_id = :movie, r_user_id = :user_id,r_theater_id = :theater,price = :price,
+            r_payment = :payment,status = :status where booking_id = :id
+        ";
+        
+        $updateQuery = $connect->prepare($upd);
+        $updateQuery->bindParam(':movie',$movie);
+        $updateQuery->bindParam(':user_id',$user_id);
+        $updateQuery->bindParam(':theater',$theater);
+        $updateQuery->bindParam(':price',$price);
+        $updateQuery->bindParam(':payment',$payment);
+        $updateQuery->bindParam(':status',$status);
+        $updateQuery->bindParam(':id',$id);
+        $updateQuery->execute();
+        return  "succ";
+    }
+            //PRICE FUNCTION
+    function price($connect){
+        $output = [];
+        $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m on b.r_movie_id = m.movie_id inner join theater as t on b.r_theater_id = t.theater_id  
+        inner join login as l on b.r_user_id = l.user_id inner join payment as p on b.r_payment = p.payment_id order BY b.price ASC;");
+        $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
+        return  json_encode($output["datas"]); 
+    }
+            //STATUS FUNCTION
+    function status($connect){
+        $output = [];
+        $sel =$connect->query("select b.*, m.movie_name, t.theater_name, l.mobileNo as user_mobile, p.payment_type, p.status as payment_status from booking as b inner join movie as m ON b.r_movie_id = m.movie_id  
+        inner join theater as t ON b.r_theater_id = t.theater_id inner join login as l ON b.r_user_id = l.user_id inner join payment as p ON b.r_payment = p.payment_id where p.status = 'success';");
+        $output["datas"] = $sel->fetchAll(PDO::FETCH_ASSOC);
+        return  json_encode($output["datas"]); 
+    }
+    
 ?>
