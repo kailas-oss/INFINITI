@@ -50,7 +50,7 @@
             <input name="caste" type="text" required><br>
 
             <label for="">Image :</label><br>
-            <input name="image" type="text" required><br>
+            <input enctype ="multipart/form-data"  name="image" type="file" required><br>
             <input type="submit">
         </form>
     </div>
@@ -81,8 +81,5 @@
     ]);
     $addMovies["action"] = "addMovies";
     $responce = curl($apiKey,$addMovies);
-    // print_r($responce);
-
-
-    
+    // print_r($responce);    
 ?>

@@ -12,4 +12,5 @@
     }catch(PDOException $e){
         echo "connection fails".$e->getMessage();
     }
+    
 ?>

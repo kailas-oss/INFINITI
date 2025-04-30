@@ -7,6 +7,8 @@
     $key = isset($headers['API-KEY']) ? $headers['API-KEY'] : null;
     if($key=="showlist"){
         if($action=="search"){
+            include 'configuration/config.php';
+            // $connect = connect();x
             echo search($connect);
         }
     }else if($key=="price"){
@@ -32,7 +34,6 @@
         if($action=='delete'){
             $data_id = $_POST['data_id'];
             $del = "delete from booking where booking_id = :id";
-
             $del = $connect->prepare($del);
             $del->bindParam(':id',$data_id);
             $del->execute();
@@ -70,18 +71,25 @@
             $inserting->bindParam(':caste',$caste);
             $inserting->execute();    
             
-            $sel = $connect->query("select movie_id from movie where movie_name=:movie and description=:description,duration=:duration ,movie_type=:movieType ,supp_lang=:suppLang ,release_date=:release ,r_caste=:caste ;");
-            // $movie_id = $sel->execute();
-            $sel = $connect->prepare($insert);
-            $sel->bindParam(':movie',$movie);
-            $sel->bindParam(':description',$description);
-            $sel->bindParam(':duration',$duration);
-            $sel->bindParam(':movieType',$movieType);
-            $sel->bindParam(':suppLang',$suppLang);
-            $sel->bindParam(':release',$releaseDate);
-            $sel->bindParam(':caste',$caste);
-            $movie_id = $sel->execute();
-            echo $movie_id;
+            $sql = "select movie_id from movie where movie_name = :movie and description = :description and duration = :duration and movie_type = :movieType and supp_lang = :suppLang and release_date = :release and r_caste = :caste";
+
+            $sel = $connect->prepare($sql);
+            $sel->bindParam(':movie', $movie);
+            $sel->bindParam(':description', $description);
+            $sel->bindParam(':duration', $duration);
+            $sel->bindParam(':movieType', $movieType);
+            $sel->bindParam(':suppLang', $suppLang);
+            $sel->bindParam(':release', $releaseDate);
+            $sel->bindParam(':caste', $caste);
+
+            $sel->execute();
+            $result = $sel->fetch(PDO::FETCH_ASSOC);
+
+            $movie_id = $result['movie_id'];
+
+            // $img = $_FILES['image'];
+            // print_r($img);
+            
         }
     }
 
@@ -133,7 +141,7 @@
     function updateVal($connect){
         $datas = json_decode($_POST['datas'], true); 
         $movie = $datas[0]['movie'];
-        $user_id = $datas[0]['user_id'];
+        $user_id = $datas[0]['user_id']; 
         $theater = $datas[0]['theater'];
         $price = $datas[0]['price'];
         $payment = $datas[0]['payment'];
