@@ -19,6 +19,7 @@
     // $obj->acc();
 
     //Bank Account Class
+
     // class Account{
     //     public $balance=0;
     //     // function __construct($amount){
@@ -42,38 +43,82 @@
     // $amount = $obj->balance();
     // echo $amount;
 
-    class Login{
-        protected $userName;
-        protected $password;
-        function display(){
-            echo "user name is : ".$this->userName."<br>";
-            echo "password is : ".$this->password."<br>";
-        }
+    // class Login{
+    //     protected $userName;
+    //     protected $password;
+    //     function __construct($userName,$password){
+    //         $this->userName = $userName;
+    //         $this->password = $password;
+    //     }
+    //     function display(){
+    //         echo "user name is : ".$this->userName."<br>";
+    //         echo "password is : ".$this->password."<br>";
+    //     }
+    // }
+    // class User extends Login{
+    //     function __construct($userName,$password){
+    //         echo "This is User "."<br>";
+    //         parent::__construct($userName,$password);
+    //     }
+    // }
+
+    // class Admin extends Login{
+    //     function __construct($userName,$password){
+    //         echo "This is Admin "."<br>";
+    //         parent::__construct($userName,$password);
+    //     }
+    // }
+
+    // $user = new User("reshmi","1234");
+    // $user->display();
+
+
+            //LEVEL - 3
+
+class login{
+    protected $userName;
+    protected $password;
+
+    function __construct($userName,$password){
+        $this->userName = $userName;
+        $this->password = $password;
     }
-    class User extends Login{
-        function __construct($userName,$password){
-            echo "This is User "."<br>";
-            $this->userName = $userName;
-            $this->password = $password;
+
+    function login($currUser,$currPass){
+        if($this->userName===$currUser && $this->password===$currPass){
+            echo "loged in successfully"."<br>";
+        }else{
+            echo "login failed"."<br>";
         }
     }
 
-    class Admin extends Login{
-        function __construct($userName,$password){
-            echo "This is Admin "."<br>";
-            $this->userName = $userName;
-            $this->password = $password;
-        }
+    function display(){
+        echo "User name : ".$this->userName."<br>";
+        echo "Password : *******"."<br>";
     }
+}
 
-    class Guest extends Login{
-        function __construct($userName,$password){
-            echo "This is Guest "."<br>";
-            $this->userName = $userName;
-            $this->password = $password;
-        }
-    }
+class User extends login{
+    function __construct($userName,$password){
+        echo "This is User"."<br>";
+        parent::__construct($userName,$password);
+    }    
+}
 
-    $obj = new Guest("kailas","kaials12.");
-    $obj->display();
+class Admin extends login{
+    function __construct($userName,$password){
+        echo "This is Admin"."<br>";
+        parent::__construct($userName,$password);
+    }    
+}
+
+    //Verifying 
+
+$user = new User("kailas","12345");
+$user->login("kailas","12345");
+$user->display();
+
+
+
+
 ?>
