@@ -13,6 +13,7 @@ class Register{
     function insert(){
         $file = fopen("user.XML","a+");
         
+        
     }
     
 }
